@@ -1,0 +1,45 @@
+{
+  "name": "Move tabs and groups",
+  "description": "Move tabs and tab groups around using keyboard shortcuts",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "/icons/icon16.png",
+    "32": "/icons/icon32.png",
+    "48": "/icons/icon48.png",
+    "64": "/icons/icon64.png",
+    "128": "/icons/icon128.png"
+  },
+  "permissions": ["tabGroups"],
+  "background": { "service_worker": "background.js" },
+  "commands": {
+    "move-tab-left": {
+      "suggested_key": {
+        "default": "Alt+Shift+Left",
+        "mac": "Command+MacCtrl+Left"
+      },
+      "description": "Move tab to the left"
+    },
+    "move-tab-right": {
+      "suggested_key": {
+        "default": "Alt+Shift+Right",
+        "mac": "Command+MacCtrl+Right"
+      },
+      "description": "Move tab to the right"
+    },
+    "move-tab-group-left": {
+      "suggested_key": {
+        "default": "Alt+Shift+Comma",
+        "mac": "Command+MacCtrl+Comma"
+      },
+      "description": "Move tab group to the left"
+    },
+    "move-tab-group-right": {
+      "suggested_key": {
+        "default": "Alt+Shift+Period",
+        "mac": "Command+MacCtrl+Period"
+      },
+      "description": "Move tab group to the right"
+    }
+  }
+}

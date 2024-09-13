@@ -1,0 +1,24 @@
+{
+  "name": "move-tabs-and-groups",
+  "version": "1.0.0",
+  "description": "Move tabs and tab groups around using keyboard shortcuts",
+  "main": "background.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode production --watch"
+  },
+  "author": "Jackson McKay",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.270",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "packageManager": "npm@10.8.3+sha512.d08425c8062f56d43bb8e84315864218af2492eb769e1f1ca40740f44e85bd148969382d651660363942e5909cb7ffcbef7ca0ae963ddc2c57a51243b4da8f56"
+}
