@@ -1,6 +1,6 @@
 {
   "name": "Move tabs and groups",
-  "description": "Move tabs and tab groups around using keyboard shortcuts",
+  "description": "Move tabs and tab groups around using keyboard shortcuts. Extra utilities are included to pin/unpin and ungroup tabs.",
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {

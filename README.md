@@ -1,5 +1,8 @@
 # Move tabs and groups
 
+Move tabs and tab groups around using keyboard shortcuts. Extra utilities are
+included to pin/unpin and ungroup tabs.
+
 ## Default keyboard shortcuts
 
 | Action               | Shortcut (Mac)                                         | Shortcut (everything else)                           |
@@ -15,13 +18,13 @@ The following shortcuts also exist but don't have a default keybinding:
 - Ungroup tab
 
 All shortcuts can be assigned/reassigned at
-[chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome
+[chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome.
 
 ## Notes
 
 If a tab runs off the edge of the screen, it wraps back around to the start.
 
-Pinned tabs are fuly supported.
+Pinned tabs are fully supported.
 
 If an ungrouped tab is moved around:
 
