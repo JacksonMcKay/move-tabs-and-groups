@@ -8,6 +8,7 @@ const entryPoints = {
 
 module.exports = {
   entry: entryPoints,
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, outputPath),
     filename: '[name].js',
