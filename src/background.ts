@@ -6,11 +6,21 @@ function moveCurrentTab(direction: 'left' | 'right') {
       return;
     }
 
+    /** First index this tab may be moved to. If pinned, it's zero. If not pinned, it's the first non-pinned tab index. */
+    const firstValidIndex = tabs[tabIndex].pinned
+      ? 0
+      : tabs.filter((tab) => !!tab.pinned).length;
+
+    /** Last index this tab may be moved to. If pinned, it can't go beyond the pinned tabs. If not pinned, it can go all the way to the end of the tab list.  */
+    const lastValidIndex = tabs[tabIndex].pinned
+      ? tabs.filter((tab) => !!tab.pinned).length - 1
+      : tabs.length - 1;
+
     let newIndex = tabIndex + (direction === 'left' ? -1 : 1);
-    if (newIndex < 0) {
-      newIndex = tabs.length - 1;
-    } else if (newIndex >= tabs.length) {
-      newIndex = 0;
+    if (newIndex < firstValidIndex) {
+      newIndex = lastValidIndex;
+    } else if (newIndex > lastValidIndex) {
+      newIndex = firstValidIndex;
     }
 
     chrome.tabs.move(tabId, { index: newIndex });
@@ -24,6 +34,16 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
     if (tabIndex < 0 || tab.id === undefined) {
       return;
     }
+
+    /** First index this tab/group may be moved to. If pinned, it's zero. If not pinned, it's the first non-pinned tab index. */
+    const firstValidIndex = tabs[tabIndex].pinned
+      ? 0
+      : tabs.filter((tab) => !!tab.pinned).length;
+
+    /** Last index this tab may be moved to. If pinned, it can't go beyond the pinned tabs. If not pinned, it can go all the way to the end of the tab list.  */
+    const lastValidIndex = tabs[tabIndex].pinned
+      ? tabs.filter((tab) => !!tab.pinned).length - 1
+      : tabs.length - 1;
 
     chrome.tabs.query({ groupId: tab.groupId }, (_tabsInCurrentGroup) => {
       const tabsInCurrentGroup =
@@ -39,14 +59,21 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
       }
 
       if (
-        tabIndexInGroupToSwapWith < 0 ||
-        tabIndexInGroupToSwapWith >= tabs.length
+        tabIndexInGroupToSwapWith < firstValidIndex ||
+        tabIndexInGroupToSwapWith > lastValidIndex
       ) {
         // If the group has been moved off the edge of the window, wrap it to the other side
-        chrome.tabGroups.move(tab.groupId, {
-          index:
-            direction === 'right' ? 0 : tabs.length - tabsInCurrentGroup.length,
-        });
+        if (tab.groupId >= 0) {
+          chrome.tabGroups.move(tab.groupId, {
+            index:
+              direction === 'right'
+                ? firstValidIndex
+                : lastValidIndex + 1 - tabsInCurrentGroup.length,
+          });
+        } else {
+          // Tab is ungrouped, move as normal
+          moveCurrentTab(direction);
+        }
 
         return;
       }
