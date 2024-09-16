@@ -40,6 +40,12 @@
         "mac": "Command+MacCtrl+Period"
       },
       "description": "Move tab group to the right"
+    },
+    "ungroup-tab": {
+      "description": "Ungroup tab"
+    },
+    "toggle-tab-pinned": {
+      "description": "Pin/Unpin tab"
     }
   }
 }

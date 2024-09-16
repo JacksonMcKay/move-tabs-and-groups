@@ -102,6 +102,28 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
   });
 }
 
+function ungroupCurrentTab() {
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    const tab = tabs[0];
+    if (tab?.id === undefined) {
+      return;
+    }
+
+    chrome.tabs.ungroup(tab.id);
+  });
+}
+
+function toggleCurrentTabPinned() {
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    const tab = tabs[0];
+    if (tab?.id === undefined) {
+      return;
+    }
+
+    chrome.tabs.update(tab.id, { pinned: !tab.pinned });
+  });
+}
+
 chrome.commands.onCommand.addListener((command) => {
   switch (command) {
     case 'move-tab-left':
@@ -115,6 +137,12 @@ chrome.commands.onCommand.addListener((command) => {
       break;
     case 'move-tab-group-right':
       moveCurrentTabGroup('right');
+      break;
+    case 'ungroup-tab':
+      ungroupCurrentTab();
+      break;
+    case 'toggle-tab-pinned':
+      toggleCurrentTabPinned();
       break;
   }
 });
