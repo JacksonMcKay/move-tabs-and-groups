@@ -9,10 +9,19 @@
 | Move tab group left  | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>,</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>     |
 | Move tab group right | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>.</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>     |
 
-These can be reassigned at
+The following shortcuts also exist but don't have a default keybinding:
+
+- Pin/Unpin tab
+- Ungroup tab
+
+All shortcuts can be assigned/reassigned at
 [chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome
 
 ## Notes
+
+If a tab runs off the edge of the screen, it wraps back around to the start.
+
+Pinned tabs are fuly supported.
 
 If an ungrouped tab is moved around:
 
