@@ -107,6 +107,116 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
   });
 }
 
+function moveCurrentTabToWindow(direction: 'previous' | 'next') {
+  chrome.windows.getAll({ windowTypes: ['normal'] }, (allWindows) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs.length === 0 || tabs.length > 1) {
+        console.debug('No active tab found', tabs.length);
+        return;
+      }
+      const tabId = tabs[0].id;
+      if (tabId === undefined) {
+        console.debug('No tab id found');
+        return;
+      }
+      const windowId = tabs[0].windowId;
+
+      const isIncognito = allWindows.find(
+        (window) => window.id === windowId
+      )?.incognito;
+
+      const windows = allWindows.filter(
+        (window) => window.incognito === isIncognito
+      );
+      if (windows.length <= 1) {
+        console.debug('Only one window found');
+        return;
+      }
+
+      const currentWindowIndex = windows.findIndex(
+        (window) => window.id === windowId
+      );
+
+      let destinationWindowIndex =
+        direction === 'previous'
+          ? currentWindowIndex - 1
+          : currentWindowIndex + 1;
+      if (destinationWindowIndex < 0) {
+        destinationWindowIndex = windows.length - 1;
+      } else if (destinationWindowIndex >= windows.length) {
+        destinationWindowIndex = 0;
+      }
+      const destinationWindowId = windows[destinationWindowIndex].id;
+      if (destinationWindowId === undefined) {
+        console.debug('No destination window id found');
+        return;
+      }
+      chrome.tabs.move(tabId, { windowId: destinationWindowId, index: -1 });
+      chrome.tabs.update(tabId, { active: true });
+      chrome.windows.update(destinationWindowId, { focused: true });
+    });
+  });
+}
+
+function moveCurrentTabGroupToWindow(direction: 'previous' | 'next') {
+  chrome.windows.getAll({ windowTypes: ['normal'] }, (allWindows) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs.length === 0 || tabs.length > 1) {
+        console.debug('No active tab found', tabs.length);
+        return;
+      }
+      const currentTab = tabs[0];
+      const tabId = currentTab.id;
+      if (tabId === undefined) {
+        console.debug('No tab id found');
+        return;
+      }
+      const windowId = currentTab.windowId;
+
+      const isIncognito = allWindows.find(
+        (window) => window.id === windowId
+      )?.incognito;
+
+      const windows = allWindows.filter(
+        (window) => window.incognito === isIncognito
+      );
+      if (windows.length <= 1) {
+        console.debug('Only one window found');
+        return;
+      }
+
+      const currentWindowIndex = windows.findIndex(
+        (window) => window.id === windowId
+      );
+
+      let destinationWindowIndex =
+        direction === 'previous'
+          ? currentWindowIndex - 1
+          : currentWindowIndex + 1;
+      if (destinationWindowIndex < 0) {
+        destinationWindowIndex = windows.length - 1;
+      } else if (destinationWindowIndex >= windows.length) {
+        destinationWindowIndex = 0;
+      }
+      const destinationWindowId = windows[destinationWindowIndex].id;
+      if (destinationWindowId === undefined) {
+        console.debug('No destination window id found');
+        return;
+      }
+      if (currentTab.groupId >= 0) {
+        chrome.tabGroups.move(currentTab.groupId, {
+          windowId: destinationWindowId,
+          index: -1,
+        });
+      } else {
+        chrome.tabs.move(tabId, { windowId: destinationWindowId, index: -1 });
+      }
+      chrome.tabs.update(tabId, { active: true });
+      chrome.windows.update(destinationWindowId, { focused: true });
+    });
+  });
+}
+
 function ungroupCurrentTab() {
   chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
     const tab = tabs[0];
@@ -142,6 +252,18 @@ chrome.commands.onCommand.addListener((command) => {
       break;
     case 'move-tab-group-right':
       moveCurrentTabGroup('right');
+      break;
+    case 'move-tab-to-previous-window':
+      moveCurrentTabToWindow('previous');
+      break;
+    case 'move-tab-to-next-window':
+      moveCurrentTabToWindow('next');
+      break;
+    case 'move-tab-group-to-previous-window':
+      moveCurrentTabGroupToWindow('previous');
+      break;
+    case 'move-tab-group-to-next-window':
+      moveCurrentTabGroupToWindow('next');
       break;
     case 'ungroup-tab':
       ungroupCurrentTab();

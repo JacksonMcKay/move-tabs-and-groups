@@ -16,6 +16,10 @@ The following shortcuts also exist but don't have a default keybinding:
 
 - Pin/Unpin tab
 - Ungroup tab
+- Move tab to the next window
+- Move tab to the previous window
+- Move tab group to the next window
+- Move tab group to the previous window
 
 All shortcuts can be assigned/reassigned at
 [chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome.
