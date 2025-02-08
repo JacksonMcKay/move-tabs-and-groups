@@ -1,6 +1,10 @@
 function moveCurrentTab(direction: 'left' | 'right') {
   chrome.tabs.query({ currentWindow: true }, (tabs) => {
     const tabIndex = tabs.findIndex((tab) => tab.active);
+    if (tabIndex < 0) {
+      console.debug('No active tab found');
+      return;
+    }
     const tabId = tabs[tabIndex].id;
     if (tabIndex < 0 || tabId === undefined) {
       return;
@@ -32,6 +36,7 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
     const tabIndex = tabs.findIndex((tab) => tab.active);
     const tab = tabs[tabIndex];
     if (tabIndex < 0 || tab.id === undefined) {
+      console.debug('No active tab found');
       return;
     }
 
