@@ -21,8 +21,12 @@ The following shortcuts also exist but don't have a default keybinding:
 - Move tab group to the next window
 - Move tab group to the previous window
 
-All shortcuts can be assigned/reassigned at
-[chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome.
+All shortcuts can be assigned/reassigned at:
+
+- [chrome://extensions/shortcuts](chrome://extensions/shortcuts) in Chrome
+- [edge://extensions/shortcuts](edge://extensions/shortcuts) in Edge
+- [about:addons](about:addons) in Firefox by selecting "Manage Extension
+  Shortcuts" from the settings cog
 
 ## Notes
 

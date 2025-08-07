@@ -32,6 +32,7 @@ function moveCurrentTab(direction: 'left' | 'right') {
 
     chrome.tabs.move(tabId, { index: newIndex });
     if (isWrappingAround) {
+      // Workaround for Firefox auto-grouping behaviour
       ungroupCurrentTab();
     }
   });
