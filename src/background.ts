@@ -21,13 +21,19 @@ function moveCurrentTab(direction: 'left' | 'right') {
       : tabs.length - 1;
 
     let newIndex = tabIndex + (direction === 'left' ? -1 : 1);
+    let isWrappingAround = false;
     if (newIndex < firstValidIndex) {
       newIndex = lastValidIndex;
+      isWrappingAround = true;
     } else if (newIndex > lastValidIndex) {
       newIndex = firstValidIndex;
+      isWrappingAround = true;
     }
 
     chrome.tabs.move(tabId, { index: newIndex });
+    if (isWrappingAround) {
+      ungroupCurrentTab();
+    }
   });
 }
 
@@ -78,6 +84,8 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
         } else {
           // Tab is ungrouped, move as normal
           moveCurrentTab(direction);
+          // Workaround for Firefox auto-grouping behaviour
+          ungroupCurrentTab();
         }
 
         return;
@@ -100,6 +108,8 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
             chrome.tabGroups.move(tab.groupId, { index: indexToMoveTo });
           } else {
             chrome.tabs.move(tab.id!, { index: indexToMoveTo });
+            // Workaround for Firefox auto-grouping behaviour
+            ungroupCurrentTab();
           }
         }
       );
