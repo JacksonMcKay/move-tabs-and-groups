@@ -1,7 +1,8 @@
 const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
-const outputPath = 'dist';
+const outputPath =
+  process.env.FOR_BROWSER === 'firefox' ? 'dist-firefox' : 'dist';
 const entryPoints = {
   background: path.resolve(__dirname, 'src', 'background.ts'),
 };
@@ -31,7 +32,17 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: '.', to: '.', context: 'public' }],
+      patterns: [
+        { from: '.', to: '.', context: 'public' },
+        {
+          from: '.',
+          to: '.',
+          context:
+            process.env.FOR_BROWSER === 'firefox'
+              ? 'public-firefox'
+              : 'public-generic',
+        },
+      ],
     }),
   ],
 };

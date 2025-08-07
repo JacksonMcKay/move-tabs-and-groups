@@ -5,7 +5,9 @@
   "main": "background.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack --mode production --watch"
+    "build-firefox": "FOR_BROWSER=firefox webpack --mode production",
+    "dev": "webpack --mode production --watch",
+    "dev-firefox": "FOR_BROWSER=firefox webpack --mode production --watch"
   },
   "author": "Jackson McKay",
   "license": "MIT",
