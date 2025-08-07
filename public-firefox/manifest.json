@@ -59,5 +59,10 @@
     "toggle-tab-pinned": {
       "description": "Pin/Unpin tab"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "movetabs.virtual438@aleeas.com"
+    }
   }
 }

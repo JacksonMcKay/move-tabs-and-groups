@@ -48,14 +48,22 @@ npm i
 
 ```sh
 npm run dev
+# or for Firefox
+npm run dev-firefox
 ```
 
 ### Build for production
 
+Note: the zip step uses Posix commands `rm`, `pushd`, `popd` and `zip`. If
+you're on Windows, you may need to use WSL or zip manually.
+
 ```sh
-npm run build
+npm run build-and-zip
+# or for Firefox
+npm run build-and-zip-firefox
 ```
 
-To load the extension in the browser, you'll need to navigate to the extension
-management page, turn on "Developer mode", select "Load unpacked" and open the
-`dist` directory in this repo.
+- In Chrome, navigate to the extension management page, turn on "Developer
+  mode", select "Load unpacked" and open the `dist` directory in this repo.
+- In Firefox, navigate to the extension management page, "Install Add-on From
+  File..." and select the `move-tabs-and-groups-firefox.zip` file in this repo.
