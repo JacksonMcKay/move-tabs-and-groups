@@ -7,7 +7,9 @@
     "build": "webpack --mode production",
     "build-firefox": "FOR_BROWSER=firefox webpack --mode production",
     "dev": "webpack --mode production --watch",
-    "dev-firefox": "FOR_BROWSER=firefox webpack --mode production --watch"
+    "dev-firefox": "FOR_BROWSER=firefox webpack --mode production --watch",
+    "zip": "rm -fv move-tabs-and-groups.zip && pushd dist && zip -r ../move-tabs-and-groups.zip . ; popd",
+    "zip-firefox": "rm -fv move-tabs-and-groups-firefox.zip && pushd dist-firefox && zip -r ../move-tabs-and-groups-firefox.zip . ; popd"
   },
   "author": "Jackson McKay",
   "license": "MIT",
