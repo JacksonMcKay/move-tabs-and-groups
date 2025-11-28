@@ -13,51 +13,51 @@
   "permissions": ["tabGroups"],
   "background": { "service_worker": "background.js" },
   "commands": {
-    "move-tab-left": {
-      "suggested_key": {
-        "default": "Alt+Shift+Left",
-        "mac": "Command+MacCtrl+Left"
-      },
-      "description": "Move tab to the left"
-    },
-    "move-tab-right": {
-      "suggested_key": {
-        "default": "Alt+Shift+Right",
-        "mac": "Command+MacCtrl+Right"
-      },
-      "description": "Move tab to the right"
-    },
     "move-tab-group-left": {
       "suggested_key": {
         "default": "Alt+Shift+Comma",
         "mac": "Command+MacCtrl+Comma"
       },
-      "description": "Move tab group to the left"
+      "description": "Group: Move left"
     },
     "move-tab-group-right": {
       "suggested_key": {
         "default": "Alt+Shift+Period",
         "mac": "Command+MacCtrl+Period"
       },
-      "description": "Move tab group to the right"
-    },
-    "move-tab-to-next-window": {
-      "description": "Move tab to the next window"
-    },
-    "move-tab-to-previous-window": {
-      "description": "Move tab to the previous window"
+      "description": "Group: Move right"
     },
     "move-tab-group-to-next-window": {
-      "description": "Move tab group to the next window"
+      "description": "Group: Move to next window"
     },
     "move-tab-group-to-previous-window": {
-      "description": "Move tab group to the previous window"
+      "description": "Group: Move to previous window"
     },
-    "ungroup-tab": {
-      "description": "Ungroup tab"
+    "move-tab-left": {
+      "suggested_key": {
+        "default": "Alt+Shift+Left",
+        "mac": "Command+MacCtrl+Left"
+      },
+      "description": "Tab: Move left"
+    },
+    "move-tab-right": {
+      "suggested_key": {
+        "default": "Alt+Shift+Right",
+        "mac": "Command+MacCtrl+Right"
+      },
+      "description": "Tab: Move right"
+    },
+    "move-tab-to-next-window": {
+      "description": "Tab: Move to next window"
+    },
+    "move-tab-to-previous-window": {
+      "description": "Tab: Move to previous window"
     },
     "toggle-tab-pinned": {
-      "description": "Pin/Unpin tab"
+      "description": "Tab: Pin/Unpin"
+    },
+    "ungroup-tab": {
+      "description": "Tab: Ungroup"
     }
   }
 }
