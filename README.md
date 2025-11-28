@@ -3,6 +3,12 @@
 Move tabs and tab groups around using keyboard shortcuts. Extra utilities are
 included to pin/unpin and ungroup tabs.
 
+## Installation
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/move-tabs-and-groups/kccnmjkpiedjlkkpnlbbbjhpjklibcmm)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/move-tabs-and-groups/)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/move-tabs-and-groups/odljdbhcpdgddnmfhdpdjhofkjjonofl)
+
 ## Default keyboard shortcuts
 
 | Action               | Shortcut (Mac)                                         | Shortcut (everything else)                           |
