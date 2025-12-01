@@ -27,6 +27,12 @@
       },
       "description": "Group: Move right"
     },
+    "move-tab-group-to-start": {
+      "description": "Group: Move to start"
+    },
+    "move-tab-group-to-end": {
+      "description": "Group: Move to end"
+    },
     "move-tab-group-to-next-window": {
       "description": "Group: Move to next window"
     },
@@ -46,6 +52,12 @@
         "mac": "Command+MacCtrl+Right"
       },
       "description": "Tab: Move right"
+    },
+    "move-tab-to-start": {
+      "description": "Tab: Move to start"
+    },
+    "move-tab-to-end": {
+      "description": "Tab: Move to end"
     },
     "move-tab-to-next-window": {
       "description": "Tab: Move to next window"

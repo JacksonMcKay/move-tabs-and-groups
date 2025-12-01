@@ -1,4 +1,6 @@
-function moveCurrentTab(direction: 'left' | 'right') {
+function moveCurrentTab(
+  directionOrPosition: 'left' | 'right' | 'start' | 'end'
+) {
   chrome.tabs.query({ currentWindow: true }, (tabs) => {
     const tabIndex = tabs.findIndex((tab) => tab.active);
     if (tabIndex < 0) {
@@ -20,7 +22,16 @@ function moveCurrentTab(direction: 'left' | 'right') {
       ? tabs.filter((tab) => !!tab.pinned).length - 1
       : tabs.length - 1;
 
-    let newIndex = tabIndex + (direction === 'left' ? -1 : 1);
+    let newIndex: number | undefined;
+    if (directionOrPosition === 'start') {
+      newIndex = firstValidIndex;
+    } else if (directionOrPosition === 'end') {
+      newIndex = lastValidIndex;
+    } else if (directionOrPosition === 'left') {
+      newIndex = tabIndex - 1;
+    } else {
+      newIndex = tabIndex + 1;
+    }
     let isWrappingAround = false;
     if (newIndex < firstValidIndex) {
       newIndex = lastValidIndex;
@@ -38,7 +49,9 @@ function moveCurrentTab(direction: 'left' | 'right') {
   });
 }
 
-function moveCurrentTabGroup(direction: 'left' | 'right') {
+function moveCurrentTabGroup(
+  directionOrPosition: 'left' | 'right' | 'start' | 'end'
+) {
   chrome.tabs.query({ currentWindow: true }, (tabs) => {
     const tabIndex = tabs.findIndex((tab) => tab.active);
     const tab = tabs[tabIndex];
@@ -63,7 +76,11 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
       const startIndexInCurrentGroup = tabsInCurrentGroup[0].index;
 
       let tabIndexInGroupToSwapWith;
-      if (direction === 'left') {
+      if (directionOrPosition === 'start') {
+        tabIndexInGroupToSwapWith = firstValidIndex;
+      } else if (directionOrPosition === 'end') {
+        tabIndexInGroupToSwapWith = lastValidIndex;
+      } else if (directionOrPosition === 'left') {
         tabIndexInGroupToSwapWith = tabsInCurrentGroup[0].index - 1;
       } else {
         tabIndexInGroupToSwapWith =
@@ -78,13 +95,13 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
         if (tab.groupId >= 0) {
           chrome.tabGroups.move(tab.groupId, {
             index:
-              direction === 'right'
+              directionOrPosition === 'right'
                 ? firstValidIndex
                 : lastValidIndex + 1 - tabsInCurrentGroup.length,
           });
         } else {
           // Tab is ungrouped, move as normal
-          moveCurrentTab(direction);
+          moveCurrentTab(directionOrPosition);
           // Workaround for Firefox auto-grouping behaviour
           ungroupCurrentTab();
         }
@@ -93,6 +110,7 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
       }
 
       const groupIdToSwapWith = tabs[tabIndexInGroupToSwapWith].groupId;
+
       chrome.tabs.query(
         { groupId: groupIdToSwapWith },
         (_tabsInGroupToSwapWith) => {
@@ -100,10 +118,18 @@ function moveCurrentTabGroup(direction: 'left' | 'right') {
             groupIdToSwapWith !== -1
               ? _tabsInGroupToSwapWith
               : [tabs[tabIndexInGroupToSwapWith]];
-          const indexToMoveTo =
-            direction === 'left'
-              ? tabsInGroupToSwapWith[0].index
-              : startIndexInCurrentGroup + tabsInGroupToSwapWith.length;
+
+          let indexToMoveTo: number;
+          if (directionOrPosition === 'start') {
+            indexToMoveTo = firstValidIndex;
+          } else if (directionOrPosition === 'end') {
+            indexToMoveTo = lastValidIndex;
+          } else if (directionOrPosition === 'left') {
+            indexToMoveTo = tabsInGroupToSwapWith[0].index;
+          } else {
+            indexToMoveTo =
+              startIndexInCurrentGroup + tabsInGroupToSwapWith.length;
+          }
 
           if (tab.groupId >= 0) {
             chrome.tabGroups.move(tab.groupId, { index: indexToMoveTo });
@@ -258,11 +284,23 @@ chrome.commands.onCommand.addListener((command) => {
     case 'move-tab-right':
       moveCurrentTab('right');
       break;
+    case 'move-tab-to-start':
+      moveCurrentTab('start');
+      break;
+    case 'move-tab-to-end':
+      moveCurrentTab('end');
+      break;
     case 'move-tab-group-left':
       moveCurrentTabGroup('left');
       break;
     case 'move-tab-group-right':
       moveCurrentTabGroup('right');
+      break;
+    case 'move-tab-group-to-start':
+      moveCurrentTabGroup('start');
+      break;
+    case 'move-tab-group-to-end':
+      moveCurrentTabGroup('end');
       break;
     case 'move-tab-to-previous-window':
       moveCurrentTabToWindow('previous');

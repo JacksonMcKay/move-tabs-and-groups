@@ -11,21 +11,25 @@ included to pin/unpin and ungroup tabs.
 
 ## Default keyboard shortcuts
 
-| Action               | Shortcut (Mac)                                         | Shortcut (everything else)                           |
-| -------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
-| Move tab left        | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>Left</kbd>  | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Left</kbd>  |
-| Move tab right       | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>Right</kbd> | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Right</kbd> |
-| Move tab group left  | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>,</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>     |
-| Move tab group right | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>.</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>     |
+| Action            | Shortcut (Mac)                                         | Shortcut (everything else)                           |
+| ----------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| Tab: Move left    | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>Left</kbd>  | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Left</kbd>  |
+| Tab: Move right   | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>Right</kbd> | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Right</kbd> |
+| Group: Move left  | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>,</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>,</kbd>     |
+| Group: Move right | <kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>.</kbd>     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>.</kbd>     |
 
 The following shortcuts also exist but don't have a default keybinding:
 
-- Pin/Unpin tab
-- Ungroup tab
-- Move tab to the next window
-- Move tab to the previous window
-- Move tab group to the next window
-- Move tab group to the previous window
+- Tab: Pin/Unpin
+- Tab: Ungroup
+- Tab: Move to the start
+- Tab: Move to the end
+- Tab: Move to the next window
+- Tab: Move to the previous window
+- Group: Move to the start
+- Group: Move to the end
+- Group: Move to the next window
+- Group: Move to the previous window
 
 All shortcuts can be assigned/reassigned at:
 
