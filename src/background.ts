@@ -254,6 +254,19 @@ function moveCurrentTabGroupToWindow(direction: 'previous' | 'next') {
   });
 }
 
+function newTabInCurrentGroup() {
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    const tab = tabs[0];
+    chrome.tabs.create({}, (newTab) => {
+      // If the current tab is ungrouped, still create a new tab but don't group it
+      if (newTab?.id === undefined || tab.groupId === -1) {
+        return;
+      }
+      chrome.tabs.group({ groupId: tab.groupId, tabIds: [newTab.id] });
+    });
+  });
+}
+
 function ungroupCurrentTab() {
   chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
     const tab = tabs[0];
@@ -313,6 +326,9 @@ chrome.commands.onCommand.addListener((command) => {
       break;
     case 'move-tab-group-to-next-window':
       moveCurrentTabGroupToWindow('next');
+      break;
+    case 'add-new-tab-in-current-group':
+      newTabInCurrentGroup();
       break;
     case 'ungroup-tab':
       ungroupCurrentTab();

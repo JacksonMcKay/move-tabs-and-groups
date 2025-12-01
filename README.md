@@ -1,7 +1,7 @@
 # Move tabs and groups
 
 Move tabs and tab groups around using keyboard shortcuts. Extra utilities are
-included to pin/unpin and ungroup tabs.
+included to pin/unpin/ungroup tabs and to create a new tab in the current group.
 
 ## Installation
 
@@ -30,6 +30,7 @@ The following shortcuts also exist but don't have a default keybinding:
 - Group: Move to the end
 - Group: Move to the next window
 - Group: Move to the previous window
+- Group: New tab in current group
 
 All shortcuts can be assigned/reassigned at:
 

@@ -39,6 +39,9 @@
     "move-tab-group-to-previous-window": {
       "description": "Group: Move to previous window"
     },
+    "add-new-tab-in-current-group": {
+      "description": "Group: New tab in current group"
+    },
     "move-tab-left": {
       "suggested_key": {
         "default": "Alt+Shift+Left",
