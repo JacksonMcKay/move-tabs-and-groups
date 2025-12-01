@@ -1,7 +1,7 @@
 # Move tabs and groups
 
-Move tabs and tab groups around using keyboard shortcuts. Extra utilities are
-included to pin/unpin/ungroup tabs and to create a new tab in the current group.
+Move tabs and tab groups around using keyboard shortcuts. Also pin/unpin/ungroup
+tabs or create a new tab in the current group.
 
 ## Installation
 
