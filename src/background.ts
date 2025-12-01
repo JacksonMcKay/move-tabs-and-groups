@@ -291,49 +291,56 @@ function toggleCurrentTabPinned() {
 
 chrome.commands.onCommand.addListener((command) => {
   switch (command) {
-    case 'move-tab-left':
+    /*
+     * Command naming considerations:
+     *
+     * Chromium-based browsers display the keyboard shortcuts in order of command name.
+     * I've tried to make them hierarchical where related commands will share a prefix.
+     * Numbers are used where necessary to force the right order.
+     */
+    case 'tab--move-direction--left':
       moveCurrentTab('left');
       break;
-    case 'move-tab-right':
+    case 'tab--move-direction--right':
       moveCurrentTab('right');
       break;
-    case 'move-tab-to-start':
+    case 'tab--move-to-end--1-start':
       moveCurrentTab('start');
       break;
-    case 'move-tab-to-end':
+    case 'tab--move-to-end--2-end':
       moveCurrentTab('end');
       break;
-    case 'move-tab-group-left':
-      moveCurrentTabGroup('left');
-      break;
-    case 'move-tab-group-right':
-      moveCurrentTabGroup('right');
-      break;
-    case 'move-tab-group-to-start':
-      moveCurrentTabGroup('start');
-      break;
-    case 'move-tab-group-to-end':
-      moveCurrentTabGroup('end');
-      break;
-    case 'move-tab-to-previous-window':
+    case 'tab--move-to-window--1-previous':
       moveCurrentTabToWindow('previous');
       break;
-    case 'move-tab-to-next-window':
+    case 'tab--move-to-window--2-next':
       moveCurrentTabToWindow('next');
       break;
-    case 'move-tab-group-to-previous-window':
+    case 'group--move-direction--left':
+      moveCurrentTabGroup('left');
+      break;
+    case 'group--move-direction--right':
+      moveCurrentTabGroup('right');
+      break;
+    case 'group--move-to-end--1-start':
+      moveCurrentTabGroup('start');
+      break;
+    case 'group--move-to-end--2-end':
+      moveCurrentTabGroup('end');
+      break;
+    case 'group--move-to-window--1-previous':
       moveCurrentTabGroupToWindow('previous');
       break;
-    case 'move-tab-group-to-next-window':
+    case 'group--move-to-window--2-next':
       moveCurrentTabGroupToWindow('next');
       break;
-    case 'add-new-tab-in-current-group':
+    case 'group--new-tab':
       newTabInCurrentGroup();
       break;
-    case 'ungroup-tab':
+    case 'tab--ungroup':
       ungroupCurrentTab();
       break;
-    case 'toggle-tab-pinned':
+    case 'tab--toggle-pinned':
       toggleCurrentTabPinned();
       break;
   }

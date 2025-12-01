@@ -13,65 +13,65 @@
   "permissions": ["tabGroups"],
   "background": { "scripts": ["background.js"] },
   "commands": {
-    "move-tab-group-left": {
+    "group--move-direction--left": {
       "suggested_key": {
         "default": "Alt+Shift+Comma",
         "mac": "Command+MacCtrl+Comma"
       },
       "description": "Group: Move left"
     },
-    "move-tab-group-right": {
+    "group--move-direction--right": {
       "suggested_key": {
         "default": "Alt+Shift+Period",
         "mac": "Command+MacCtrl+Period"
       },
       "description": "Group: Move right"
     },
-    "move-tab-group-to-start": {
+    "group--move-to-end--1-start": {
       "description": "Group: Move to start"
     },
-    "move-tab-group-to-end": {
+    "group--move-to-end--2-end": {
       "description": "Group: Move to end"
     },
-    "move-tab-group-to-next-window": {
-      "description": "Group: Move to next window"
-    },
-    "move-tab-group-to-previous-window": {
+    "group--move-to-window--1-previous": {
       "description": "Group: Move to previous window"
     },
-    "add-new-tab-in-current-group": {
+    "group--move-to-window--2-next": {
+      "description": "Group: Move to next window"
+    },
+    "group--new-tab": {
       "description": "Group: New tab in current group"
     },
-    "move-tab-left": {
+    "tab--move-direction--left": {
       "suggested_key": {
         "default": "Alt+Shift+Left",
         "mac": "Command+MacCtrl+Left"
       },
       "description": "Tab: Move left"
     },
-    "move-tab-right": {
+    "tab--move-direction--right": {
       "suggested_key": {
         "default": "Alt+Shift+Right",
         "mac": "Command+MacCtrl+Right"
       },
       "description": "Tab: Move right"
     },
-    "move-tab-to-start": {
+    "tab--move-to-end--1-start": {
       "description": "Tab: Move to start"
     },
-    "move-tab-to-end": {
+    "tab--move-to-end--2-end": {
       "description": "Tab: Move to end"
     },
-    "move-tab-to-next-window": {
-      "description": "Tab: Move to next window"
-    },
-    "move-tab-to-previous-window": {
+    "tab--move-to-window--1-previous": {
       "description": "Tab: Move to previous window"
     },
-    "toggle-tab-pinned": {
+    "tab--move-to-window--2-next": {
+      "description": "Tab: Move to next window"
+    },
+    "tab--toggle-pinned": {
       "description": "Tab: Pin/Unpin"
     },
-    "ungroup-tab": {
+    "tab--ungroup": {
       "description": "Tab: Ungroup"
     }
   },
